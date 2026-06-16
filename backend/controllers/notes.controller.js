@@ -41,6 +41,8 @@ export const getSingleNotes = async (req, res) => {
   }
 };
 
+
+// delete notes logic
 export const deleteNotes = async (req, res) => {
   try {
     const deletedNote = await Notes.findOneAndDelete({
