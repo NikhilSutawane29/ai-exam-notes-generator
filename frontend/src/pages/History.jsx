@@ -18,6 +18,7 @@ const History = () => {
 
   const [selectedNote, setSelectedNote] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [deleteNotification, setDeleteNotification] = useState(null);
 
   useEffect(() => {
     const myNotes = async () => {
@@ -60,6 +61,8 @@ const History = () => {
         setSelectedNote(null);
         setActiveNoteId(null);
       }
+      setDeleteNotification(true);
+      setTimeout(() => setDeleteNotification(false), 2500);
     } catch (error) {
       console.log(error);
     }
@@ -162,8 +165,8 @@ shadow-[0_20px_45px_rgba(0,0,0,0.6)]
                 <div className="flex gap-2 mb-4">
                   <span className="text-lg items-center">📚</span>
                   <h2 className="text-lg font-bold bg-linear-to-r from-white via-gray-300 to-white bg-clip-text text-transparent">
-                   Your Notes
-                </h2>
+                    Your Notes
+                  </h2>
                 </div>
 
                 {topics.length === 0 && (
@@ -254,6 +257,22 @@ shadow-[0_20px_45px_rgba(0,0,0,0.6)]
           {!loading && selectedNote && <FinalResult result={selectedNote} />}
         </motion.div>
       </div>
+
+      {/* Delete Notification Popup */}
+      <AnimatePresence>
+        {deleteNotification && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            className="fixed bottom-8 right-8 flex items-center gap-3 px-6 py-3 rounded-xl bg-red-500/90 backdrop-blur-sm border border-red-400/30 shadow-lg"
+          >
+            <span className="text-2xl">🗑️</span>
+            <p className="text-white font-medium">Note deleted successfully!</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
