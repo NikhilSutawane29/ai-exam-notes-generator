@@ -8,6 +8,7 @@ import authRouter from "./routes/auth.route.js";
 import userRouter from "./routes/user.route.js";
 import notesRouter from "./routes/generate.routes.js"; // Import the notes router for handling notes generation routes
 import pdfRouter from "./routes/pdf.route.js";
+import pptRouter from "./routes/ppt.route.js";
 import creditRouter from "./routes/credits.route.js";
 import { stripWebhook } from "./controllers/credits.controller.js";
 
@@ -45,6 +46,7 @@ app.use("/api/auth", authRouter); // Use the auth router for authentication rout
 app.use("/api/user", userRouter); // Use the user router for user-related routes
 app.use("/api/notes", notesRouter); // Use the notes router for notes-related routes
 app.use("/api/pdf", pdfRouter); // Use the pdf router to download pdf
+app.use("/api/ppt", pptRouter); // Use the ppt router to download pdf
 app.use("/api/credit", creditRouter); 
 
 

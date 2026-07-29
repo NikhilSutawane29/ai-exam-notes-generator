@@ -56,3 +56,45 @@ export const downloadPdf = async (result) => {
     throw new Error("PDF download failed");
   }
 }
+
+
+
+
+
+
+// we fetch ppt api
+// Download PPT
+export const downloadPpt = async (result) => {
+  try {
+    const response = await axios.post(
+      serverUrl + "/api/ppt/generate-ppt",
+      { result },
+      {
+        responseType: "blob",
+        withCredentials: true,
+      }
+    );
+
+    // Create PPT Blob
+    const blob = new Blob([response.data], {
+      type: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    });
+
+    // Create Download Link
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "ExamNotesAI.pptx";
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+     console.error("PPT Error:", error);
+  console.error("Response:", error.response);
+  console.error("Data:", error.response?.data);
+  }
+};
