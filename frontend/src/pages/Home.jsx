@@ -96,6 +96,7 @@ const Home = () => {
         <Feature icon="📂" title="Project Notes" description="Well-structured content for assignments and projects" />
         <Feature icon="📊" title="Diagrams" description="Auto-generated visual diagrams for clarity." />
         <Feature icon="⬇️" title="PDF Download" description="Download clean, printable PDFs instantly." />
+        <Feature icon="📊" title="PPT Download" description="Download clean, printable PPTs Quickly." />
 
       </section>
 

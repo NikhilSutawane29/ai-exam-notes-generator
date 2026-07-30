@@ -60,7 +60,7 @@ const FinalResult = ({ result }) => {
           📘 Generated Notes
         </h2>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 flex-wrap">
           <button
             onClick={() => setQuickRevision(!quickRevision)}
             className={`
@@ -74,7 +74,6 @@ const FinalResult = ({ result }) => {
           >
             {quickRevision ? "Exit Revision Mode" : "Quick Revision (5 min"}
           </button>
-
 
           <button onClick={() => downloadPdf(result)} className="px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700">
             ⬇️ Download PDF
